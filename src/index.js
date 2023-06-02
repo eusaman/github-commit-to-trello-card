@@ -184,7 +184,8 @@ async function run() {
     console.error("NO COMMINTS")
   
   if (head_commit && head_commit.message) {
-    handleHeadCommit(head_commit)
+    console.log("SKIP THE HEAD");
+    // handleHeadCommit(head_commit)
   }
   else if (pull_request && pull_request.title) {
     handlePullRequest(pull_request)

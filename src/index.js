@@ -180,7 +180,8 @@ async function run() {
       } else
         console.error("no message for commit ", commit.id);
     }
-  }
+  } else
+    console.error("NO COMMINTS")
   
   if (head_commit && head_commit.message) {
     handleHeadCommit(head_commit)

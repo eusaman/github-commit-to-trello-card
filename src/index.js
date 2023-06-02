@@ -173,6 +173,13 @@ async function handlePullRequest(data) {
 async function run() {
   if (commits && commits.length) {
     console.log(JSON.stringify(commits));
+    commits.forEach(commit => {
+      if(commit.message) {
+        handleHeadCommit(commit);
+        console.log(commit.message);
+      } else
+        console.error("no message for commit ", commit.id);
+    }
   }
   
   if (head_commit && head_commit.message) {

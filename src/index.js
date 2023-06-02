@@ -3,7 +3,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 
 const { context = {} } = github;
-const { pull_request, head_commit } = context.payload;
+const { pull_request, head_commit, commits} = context.payload;
 
 const regexPullRequest = /Merge pull request \#\d+ from/g;
 const trelloCardIdPattern = core.getInput('trello-card-id-pattern', { required: false }) || '#';
@@ -171,6 +171,10 @@ async function handlePullRequest(data) {
 }
 
 async function run() {
+  if (commits && commits.length) {
+    console.log(JSON.stringify(commits));
+  }
+  
   if (head_commit && head_commit.message) {
     handleHeadCommit(head_commit)
   }

@@ -179,7 +179,7 @@ async function run() {
         console.log(commit.message);
       } else
         console.error("no message for commit ", commit.id);
-    }
+    });
   } else
     console.error("NO COMMINTS")
   

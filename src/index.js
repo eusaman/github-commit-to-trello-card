@@ -174,14 +174,16 @@ async function run() {
   if (commits && commits.length) {
     console.log(JSON.stringify(commits));
     commits.forEach(commit => {
-      if(commit.message) {
+      const notMergeCommit = commit.message && !commit.message.includes('Merge pull request');
+      if(notMergeCommit) {
         handleHeadCommit(commit);
-        console.log(commit.message);
+        if(commit.message)
+          console.log(commit.message);
       } else
-        console.error("no message for commit ", commit.id);
+        console.error("no message for commit ", commit.id, " or merge commit");
     });
   } else
-    console.error("NO COMMINTS")
+    console.error("NO COMMITS")
   
   if (head_commit && head_commit.message) {
     console.log("SKIP THE HEAD");

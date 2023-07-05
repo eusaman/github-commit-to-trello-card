@@ -124,6 +124,10 @@ async function handleHeadCommit(data) {
   let message = data.message;
   let user = data.author.name;
   let cardsNumbers = getCardNumbers(message);
+  if(!cardsNumbers) {
+    console.warn("No card number in commit message!");
+    return;
+  }
   cardsNumbers.forEach(async cardNumber => {
     let card = await getCardOnBoard(trelloBoardId, cardNumber);
     if (card && card.length > 0) {
